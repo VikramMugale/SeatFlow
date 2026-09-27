@@ -25,6 +25,15 @@ async function get(req, res, next) {
   }
 }
 
+async function manage(req, res, next) {
+  try {
+    const events = await eventService.listManageEvents();
+    res.json({ success: true, data: { events } });
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function create(req, res, next) {
   try {
     const event = await eventService.createEvent(req.body, req.user.id);
@@ -52,4 +61,4 @@ async function remove(req, res, next) {
   }
 }
 
-module.exports = { list, get, create, update, remove };
+module.exports = { list, manage, get, create, update, remove };

@@ -85,6 +85,16 @@ async function getEvent(id) {
   return event;
 }
 
+async function listManageEvents() {
+  const result = await query(
+    `SELECT e.*, (SELECT MIN(s.show_date) FROM shows s
+      WHERE s.event_id = e.id AND s.status = 'SCHEDULED') AS next_show_date
+     FROM events e
+     ORDER BY e.created_at DESC`
+  );
+  return result.rows;
+}
+
 async function createEvent(data, userId) {
   const result = await query(
     `INSERT INTO events (title, description, event_type, language, genre, duration_minutes, poster_url, artist, metadata, is_published, created_by)
@@ -160,4 +170,4 @@ async function deleteEvent(id) {
   return { success: true };
 }
 
-module.exports = { listEvents, getEvent, createEvent, updateEvent, deleteEvent };
+module.exports = { listEvents, listManageEvents, getEvent, createEvent, updateEvent, deleteEvent };

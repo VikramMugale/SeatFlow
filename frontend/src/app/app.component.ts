@@ -10,9 +10,10 @@ import { AuthService } from './core/services/auth.service';
   template: `
     <header class="header">
       <div class="header-inner container">
-        <a routerLink="/" class="logo">SeatFlow</a>
+        <a routerLink="/" class="logo" aria-label="SeatFlow home">SeatFlow<span>.</span></a>
         <nav class="nav">
-          <a routerLink="/events" routerLinkActive="active">Events</a>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Discover</a>
+          <a routerLink="/events" routerLinkActive="active">Explore</a>
           @if (auth.isLoggedIn) {
             <a routerLink="/bookings" routerLinkActive="active">My bookings</a>
             @if (auth.isAdmin) {
@@ -47,11 +48,12 @@ import { AuthService } from './core/services/auth.service';
   styles: [
     `
       .header {
-        background: var(--surface);
+        background: rgba(13, 15, 16, 0.94);
         border-bottom: 1px solid var(--border);
         position: sticky;
         top: 0;
         z-index: 100;
+        backdrop-filter: blur(16px);
       }
       .header-inner {
         display: flex;
@@ -61,11 +63,13 @@ import { AuthService } from './core/services/auth.service';
         padding-bottom: 0.75rem;
       }
       .logo {
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         font-weight: 700;
         color: var(--text);
         text-decoration: none;
-        letter-spacing: -0.02em;
+      }
+      .logo span {
+        color: var(--primary);
       }
       .logo:hover {
         text-decoration: none;
@@ -81,10 +85,11 @@ import { AuthService } from './core/services/auth.service';
         text-decoration: none;
         font-weight: 500;
         font-size: 0.9rem;
+        transition: color 160ms ease;
       }
       .nav a:hover,
       .nav a.active {
-        color: var(--text);
+        color: #fff;
         text-decoration: none;
       }
       .user-name {
@@ -100,7 +105,7 @@ import { AuthService } from './core/services/auth.service';
       }
       .footer {
         border-top: 1px solid var(--border);
-        background: var(--surface);
+        background: #101314;
         padding: 1.5rem 0;
         margin-top: 2rem;
       }
@@ -135,6 +140,22 @@ import { AuthService } from './core/services/auth.service';
       @media (min-width: 640px) {
         .footer-copy {
           width: auto;
+        }
+      }
+      @media (max-width: 620px) {
+        .header-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.55rem;
+        }
+        .nav {
+          width: 100%;
+          justify-content: space-between;
+          gap: 0.55rem;
+        }
+        .nav a,
+        .user-name {
+          font-size: 0.82rem;
         }
       }
     `,

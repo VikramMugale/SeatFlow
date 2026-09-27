@@ -52,14 +52,14 @@ import { environment } from '../../../environments/environment';
                 [disabled]="paying || expired || reservation.status !== 'ACTIVE'"
                 (click)="pay()"
               >
-                {{ paying ? 'Processing…' : 'Complete payment' }}
+                {{ paying ? 'Processing...' : 'Simulate payment (development)' }}
               </button>
               <button class="btn btn-ghost" [disabled]="paying" (click)="cancel()">
                 Cancel reservation
               </button>
             </div>
             <p class="hint">
-              Payment is confirmed on the server after verification. Do not close this page until confirmation appears.
+              Development checkout only. No real payment is taken. A payment provider must be configured before production sales.
             </p>
           </div>
         </div>

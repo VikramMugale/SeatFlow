@@ -30,4 +30,16 @@ export class AdminService {
   createEvent(payload: any): Observable<any> {
     return this.http.post(`${this.base}/events`, payload);
   }
+
+  listManagedEvents(): Observable<any> {
+    return this.http.get(`${this.base}/events/manage`);
+  }
+
+  updateEvent(id: string, payload: any): Observable<any> {
+    return this.http.put(`${this.base}/events/${id}`, payload);
+  }
+
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete(`${this.base}/events/${id}`);
+  }
 }

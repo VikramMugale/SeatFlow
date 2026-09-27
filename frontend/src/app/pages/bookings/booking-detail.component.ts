@@ -25,7 +25,7 @@ import { BookingService } from '../../core/services/booking.service';
             <dt>Event</dt>
             <dd>{{ booking.event_title || booking.eventTitle }}</dd>
             <dt>Venue</dt>
-            <dd>{{ booking.venue_name || booking.venueName || '—' }}</dd>
+            <dd>{{ booking.venue_name || booking.venueName || 'Venue not listed' }}</dd>
             <dt>Date</dt>
             <dd>{{ booking.show_date || booking.showDate | date: 'fullDate' }}</dd>
             <dt>Time</dt>

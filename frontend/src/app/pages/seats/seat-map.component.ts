@@ -11,7 +11,7 @@ import { BookingService } from '../../core/services/booking.service';
   template: `
     <div class="container">
       <h1 class="page-title">Select seats</h1>
-      <p class="page-sub">Seat availability updates automatically. Selected seats are held for a limited time.</p>
+      <p class="page-sub">Choose available seats. Your selection is held for a limited time after you continue.</p>
 
       @if (error) {
         <div class="alert alert-error">{{ error }}</div>
@@ -44,6 +44,7 @@ import { BookingService } from '../../core/services/booking.service';
                   [disabled]="seat.status !== 'AVAILABLE' && !isSelected(seat)"
                   (click)="toggle(seat)"
                   [title]="seat.label + ' - ₹' + seat.price"
+                  [attr.aria-label]="seat.label + ', ' + seat.status.toLowerCase() + ', ₹' + seat.price"
                 >
                   {{ seat.number }}
                 </button>
@@ -89,16 +90,16 @@ import { BookingService } from '../../core/services/booking.service';
         vertical-align: middle;
       }
       .dot.available {
-        background: #15803d;
+        background: #358462;
       }
       .dot.selected {
         background: var(--primary);
       }
       .dot.locked {
-        background: #94a3b8;
+        background: #687270;
       }
       .dot.booked {
-        background: #ef4444;
+        background: #c85c51;
       }
       .screen {
         text-align: center;
@@ -117,7 +118,9 @@ import { BookingService } from '../../core/services/booking.service';
         flex-direction: column;
         gap: 0.5rem;
         align-items: center;
+        overflow-x: auto;
         margin-bottom: 1.5rem;
+        padding: 0.5rem 0 1rem;
       }
       .row {
         display: flex;
@@ -141,21 +144,21 @@ import { BookingService } from '../../core/services/booking.service';
         color: #fff;
       }
       .seat.available {
-        background: #15803d;
+        background: #358462;
       }
       .seat.available:hover {
-        background: #166534;
+        background: #2b7154;
       }
       .seat.selected {
         background: var(--primary);
-        box-shadow: 0 0 0 2px #93c5fd;
+        box-shadow: 0 0 0 2px #f5c2a8;
       }
       .seat.locked {
-        background: #94a3b8;
+        background: #687270;
         cursor: not-allowed;
       }
       .seat.booked {
-        background: #b91c1c;
+        background: #8d453f;
         cursor: not-allowed;
         opacity: 0.9;
       }
@@ -170,6 +173,12 @@ import { BookingService } from '../../core/services/booking.service';
       }
       .muted {
         color: var(--muted);
+      }
+      @media (max-width: 600px) {
+        .row { gap: 0.25rem; }
+        .seat { flex: 0 0 32px; width: 32px; height: 32px; }
+        .row-label { flex: 0 0 1.2rem; width: 1.2rem; }
+        .summary { bottom: 0.5rem; }
       }
     `,
   ],

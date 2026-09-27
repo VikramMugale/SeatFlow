@@ -1,18 +1,18 @@
 :root {
-  --bg: #f4f5f7;
-  --surface: #ffffff;
-  --surface-2: #f0f1f3;
-  --border: #d8dce3;
-  --text: #111827;
-  --muted: #6b7280;
-  --primary: #1e3a5f;
-  --primary-hover: #152a45;
-  --success: #15803d;
-  --warning: #a16207;
-  --danger: #b91c1c;
-  --locked: #64748b;
-  --radius: 6px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --bg: #0d0f10;
+  --surface: #151819;
+  --surface-2: #202526;
+  --border: #303738;
+  --text: #f4f3ef;
+  --muted: #a3aaa8;
+  --primary: #ed684f;
+  --primary-hover: #d9533d;
+  --success: #58b58a;
+  --warning: #e7b967;
+  --danger: #ef7770;
+  --locked: #707d7a;
+  --radius: 5px;
+  --shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
 }
 
 * {
@@ -24,11 +24,18 @@
 html,
 body {
   height: 100%;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
 }
 
 a {
@@ -104,9 +111,14 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid var(--primary);
-  outline-offset: 0;
+  outline: 2px solid rgba(237, 104, 79, 0.45);
+  outline-offset: 2px;
   border-color: var(--primary);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #818987;
 }
 
 .card {
@@ -114,11 +126,11 @@ textarea:focus {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.15rem;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 1.5rem 1rem;
 }
@@ -147,23 +159,28 @@ textarea:focus {
 }
 
 .badge-success {
-  background: #dcfce7;
-  color: var(--success);
+  background: #173c30;
+  color: #9cdec0;
 }
 
 .badge-warning {
-  background: #fef3c7;
-  color: var(--warning);
+  background: #46391f;
+  color: #f0cf8e;
 }
 
 .badge-danger {
-  background: #fee2e2;
-  color: var(--danger);
+  background: #492625;
+  color: #ffc0b8;
 }
 
 .badge-muted {
-  background: #e5e7eb;
-  color: #4b5563;
+  background: #303839;
+  color: #d0d5d3;
+}
+
+::selection {
+  background: rgba(237, 104, 79, 0.36);
+  color: var(--text);
 }
 
 .form-group {
@@ -204,10 +221,9 @@ textarea:focus {
 }
 
 .page-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
-  letter-spacing: -0.02em;
 }
 
 .page-sub {
@@ -219,4 +235,21 @@ textarea:focus {
 .muted {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #f0b19a;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

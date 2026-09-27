@@ -89,7 +89,7 @@ export class LoginComponent {
     this.auth.login(this.email, this.password).subscribe({
       next: () => {
         this.loading = false;
-        this.router.navigate(['/events']);
+          this.router.navigate([this.auth.isAdmin ? '/admin' : '/events']);
       },
       error: (err) => {
         this.loading = false;
